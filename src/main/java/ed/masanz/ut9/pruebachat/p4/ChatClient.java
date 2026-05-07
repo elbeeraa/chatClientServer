@@ -42,11 +42,11 @@ public class ChatClient {
             System.out.println("Ya puedes escribir mensajes:");
             while (userInput.hasNextLine()) {
                 String message = userInput.nextLine().trim();
+                out.println(message);
                 if(message.equalsIgnoreCase("bye")){
                     System.out.println("Desconectando del servidor...");
                     break;
                 }
-                out.println(message);
             }
 
         } catch (IOException e) {
