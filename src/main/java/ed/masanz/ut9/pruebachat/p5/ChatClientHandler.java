@@ -21,7 +21,7 @@ public class ChatClientHandler extends Thread {
         try (Scanner in = new Scanner(socket.getInputStream())) {
             out = new PrintWriter(socket.getOutputStream(), true);
 
-            registrerClient(in);
+            registerClient(in);
 
             while (in.hasNextLine()) {
                 String message = in.nextLine();
@@ -71,7 +71,7 @@ public class ChatClientHandler extends Thread {
             }
     }
 
-    private void registrerClient(Scanner in) {
+    private void registerClient(Scanner in) {
         while(true){
             if(in.hasNextLine()){
                 String proposedName = in.nextLine().trim();
@@ -79,6 +79,7 @@ public class ChatClientHandler extends Thread {
                     if (!proposedName.isEmpty() && !mapClientWriters.containsKey(proposedName)) {
                         clientName = proposedName;
                         mapClientWriters.put(clientName, out);
+                        System.out.println("Cliente registrado con nombre: " + clientName);
                         out.println("OK");
                         break;
                     } else {
